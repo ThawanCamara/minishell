@@ -1,0 +1,87 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/01/20 18:48:47 by tde-souz          #+#    #+#              #
+#    Updated: 2023/02/09 06:28:00 by tde-souz         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
+#									SETTINGS								   #
+# **************************************************************************** #
+NAME		:= minishell
+
+CURRENT_OS	:= $(shell uname)
+INCLUDES	:= -I libft/ -I includes/
+LIBFT_DIR	:= libft/
+LIBFT		:= $(LIBFT_DIR)libft.a
+
+CC			:= cc
+CFLAGS		= -Wall -Wextra -Werror -g $(INCLUDES)
+ifeq ($(CURRENT_OS), Linux)
+CFLAGS		+= -fPIE
+endif
+# **************************************************************************** #
+
+
+# **************************************************************************** #
+#								   TEXT COLORS								   #
+# **************************************************************************** #
+GREEN		:= \e[38;5;118m
+GOLD		:= \e[38;5;220m
+RESET		:= \e[0m
+BOLD		:= \e[1m
+# **************************************************************************** #
+
+
+# **************************************************************************** #
+#								   SOURCE FILES								   #
+# **************************************************************************** #
+SRCS		:=	srcs/main.c
+
+OBJS		:= $(SRCS:.c=.o)
+# **************************************************************************** #
+
+
+# **************************************************************************** #
+#									  RULES									   #
+# **************************************************************************** #
+all:		$(NAME)
+
+#$(NAME):	$(LIBFT) $(OBJS) $(EXECS) includes/ libft/
+#			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lreadline -o $(NAME)
+#			@printf "$(NAME) [$(BOLD)$(GREEN)READY$(RESET)]\n"
+
+#just while developing
+$(NAME):	$(LIBFT) $(SRCS) $(EXECS) includes/ libft/
+			$(CC) $(CFLAGS) $(SRCS) $(LIBFT) -lreadline -o $(NAME)
+			@printf "$(NAME) [$(BOLD)$(GREEN)READY$(RESET)]\n"
+
+$(LIBFT):
+			make -C $(LIBFT_DIR) extra
+			make -C $(LIBFT_DIR) clean
+clean:
+			$(RM) $(OBJS)
+			@printf "$(NAME) [$(BOLD)$(GOLD)INFO$(RESET)] - object files removed\n"
+
+fclean:		clean
+			make -C $(LIBFT_DIR) fclean
+			$(RM) $(NAME)
+			@printf "$(NAME) [$(BOLD)$(GOLD)INFO$(RESET)] - program removed\n"
+
+re:			fclean all
+
+run:		all
+			clear
+			./$(NAME)
+
+leak:		all
+			clear
+			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
+
+.PHONY:		all clean fclean re run leak
+# **************************************************************************** #
