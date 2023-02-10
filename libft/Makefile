@@ -29,7 +29,7 @@ BOLD		= \e[1m
 # '-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 # 									ALIASES
 CC			= cc
-CFLAGS		+= -Wall -Wextra -Werror
+CFLAGS		+= -Wall -Wextra -Werror -g
 CPPFLAGS	+= -I ./
 ifeq ($(CURRENT_OS), Linux)
 CFLAGS		+= -fPIE
