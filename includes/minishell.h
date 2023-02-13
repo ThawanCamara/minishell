@@ -51,13 +51,40 @@
 /*									  FUNCTIONS								  */
 /* ************************************************************************** */
 
-typedef struct s_data
+enum e_types
 {
-    char ** env;
-} t_data;
+	PIPE = 10,
+	CMD = 11,
+	ARGS = 12,
+	FLAG = 13,
+	REDIR = 14
+};
 
+int	g_status;
 
+typedef struct s_args
+{
+	void	*content;
+	int		type;
+	void	*next;
+} t_args;
 
+typedef struct s_simple
+{
+	int		argc;
+	t_args	*var;
+	int		append;
+	char	*infile;
+	char	*outfile;
+	char	**argv;
+} t_simple;
+
+typedef struct s_shell
+{
+	int		stdin;
+	int		stdout;
+	char	**envp;
+} t_shell;
 
 /*
  * minishell.c

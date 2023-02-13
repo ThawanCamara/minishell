@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:14:28 by psydenst          #+#    #+#             */
-/*   Updated: 2023/02/09 21:16:23 by psydenst         ###   ########.fr       */
+/*   Updated: 2023/02/10 20:24:35 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,39 @@ char	**ft_copy_envp(char *envp[])
 	return (ret);
 }
 
+void print(char *s)
+{
+	printf("%s\n", s);
+}
+
+void ft_free(char *s)
+{
+	free(s);
+}
+
+void ft_exec(void)
+{
+	char *argv[] = {"ls", "-l", 0};
+	execve("/bin/ls", argv, NULL);
+}
+
 int	main(int argc, char *argv[], char **envp)
 {
-	t_data	data;
-	int		i;
+	//t_data	data;
+	//t_args	args;
 
-	i = 0;
-	data.env = ft_copy_envp(envp);
-	minishell(envp);
+	//args.type = PIPE;
+	//int		i = PIPE;
+
+	//i = 0;
+	//data.env = ft_copy_envp(envp);
+	//ft_striter(data.env, print);
+	//ft_striter(data.env, ft_free);
+	//free(data.env);
+	//minishell(envp);
 	(void) argc;
 	(void) argv;
 	(void) envp;
+	//ft_exec();		
 	return (0);
 }
