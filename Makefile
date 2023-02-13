@@ -41,7 +41,11 @@ BOLD		:= \e[1m
 # **************************************************************************** #
 #								   SOURCE FILES								   #
 # **************************************************************************** #
-SRCS		:=	srcs/main.c
+				
+SRCS		:=	srcs/minishell.c	\
+				srcs/utils/ft_get_prompt.c	\
+				srcs/utils/ft_strdup_arr.c	\
+				srcs/main.c
 
 OBJS		:= $(SRCS:.c=.o)
 # **************************************************************************** #
@@ -77,11 +81,11 @@ re:			fclean all
 
 run:		all
 			clear
-			./$(NAME)
+			./$(NAME) ola mundo
 
 leak:		all
 			clear
-			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
+			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) ola mundo
 
 .PHONY:		all clean fclean re run leak
 # **************************************************************************** #

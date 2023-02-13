@@ -91,6 +91,15 @@ typedef struct s_shell
  */
 void	minishell(char *envp[]);
 
+/*
+ * utils/ft_get_prompt.c
+ */
+char	*ft_get_prompt(void);
+
+/*
+ * utils/ft_strdup_arr.c
+ */
+char	**ft_strdup_arr(char **arr);
 
 /* ************************************************************************** */
 #endif

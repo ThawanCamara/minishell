@@ -177,6 +177,6 @@ int		ft_puthexup_n(unsigned int n, int fd);
 
 int		ft_clean(void *ptr, int ret);
 void	throw_error(char *msg, int error_code);
-void	ft_striter(char **array, void (*f)(char *));
+void	ft_striter(char **array, void (*f)());
 
 #endif
