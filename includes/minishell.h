@@ -36,14 +36,38 @@
 /* ************************************************************************** */
 /*								   ENUMERATIONS								  */
 /* ************************************************************************** */
-//stuff :D
+
+enum e_token_types
+{
+	PIPE = 10,
+	CMD = 11,
+	ARGS = 12,
+	REDIR = 14,
+	DOLLAR = 15
+};
+
 /* ************************************************************************** */
 
 /* ************************************************************************** */
 /*									 STRUCTS								  */
 /* ************************************************************************** */
-//stuff :D
-/* ************************************************************************** */
+
+typedef struct s_simple
+{
+	int		cmd_amount;
+	char	*infile;
+	char	*outfile;
+	char	**cmd;
+	t_list	*tokens;
+} t_simple;
+
+typedef struct s_shell
+{
+	int			stdin;
+	int			stdout;
+	char		**envp;
+	t_simple	*cmd_table;
+} t_shell;
 
 /* ************************************************************************** */
 
@@ -51,54 +75,28 @@
 /*									  FUNCTIONS								  */
 /* ************************************************************************** */
 
-enum e_types
-{
-	PIPE = 10,
-	CMD = 11,
-	ARGS = 12,
-	FLAG = 13,
-	REDIR = 14
-};
-
 int	g_status;
 
-typedef struct s_args
-{
-	void	*content;
-	int		type;
-	void	*next;
-} t_args;
+// init/ft_shellhandler.c
+void	ft_build_token_list(t_list **lst, char *input);
 
-typedef struct s_simple
-{
-	int		argc;
-	t_args	*var;
-	int		append;
-	char	*infile;
-	char	*outfile;
-	char	**argv;
-} t_simple;
+// init/ft_shellhandler.c
+void	ft_initshell(t_shell *shell, char *envp[]);
+void	ft_clearshell(t_shell *shell);
 
-typedef struct s_shell
-{
-	int		stdin;
-	int		stdout;
-	char	**envp;
-} t_shell;
+// minishell.c
+void	minishell(t_shell *shell);
 
-/*
- * minishell.c
- */
-void	minishell(char *envp[]);
+// utils/ft_free_arr.c
+void	ft_free_arr(void **arr);
 
-/*
- * utils/ft_get_prompt.c
- */
+// utils/ft_charutils.c
+int	ft_count_pipes(char *str);
+
+// utils/ft_get_prompt.c
 char	*ft_get_prompt(void);
 
-/*
- * utils/ft_strdup_arr.c
- */
+// utils/ft_strdup_arr.c
 char	**ft_strdup_arr(char **arr);
 
 /* ************************************************************************** */

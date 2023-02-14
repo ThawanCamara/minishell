@@ -14,14 +14,14 @@
 
 static char	*get_line(void);
 
-void	minishell(char *envp[])
+void	minishell(t_shell *shell)
 {
 	static char	*line = NULL;
 
-	(void) envp;
 	while (1)
 	{
 		line = get_line();
+		ft_build_token_list();
 		free(line);
 	}
 	rl_clear_history();

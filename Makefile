@@ -45,6 +45,10 @@ BOLD		:= \e[1m
 SRCS		:=	srcs/minishell.c	\
 				srcs/utils/ft_get_prompt.c	\
 				srcs/utils/ft_strdup_arr.c	\
+				srcs/init/ft_shellhandler.c	\
+				srcs/utils/ft_free_arr.c	\
+				srcs/token/ft_build_token_list.c	\
+				srcs/utils/ft_charutils.c	\
 				srcs/main.c
 
 OBJS		:= $(SRCS:.c=.o)

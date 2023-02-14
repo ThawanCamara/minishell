@@ -58,7 +58,7 @@ BASE_SRC	:=	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c		\
 				ft_printf.c ft_printf_utils_char.c ft_printf_utils_int.c				\
 				ft_printf_utils_hex.c											
 
-EXTRA_SRC	:=	ft_clean.c ft_throw_error.c ft_striter.c
+EXTRA_SRC	:=	ft_clean.c ft_throw_error.c ft_striter.c ft_nfree_arr.c
 
 BASE_SRC	:=	$(addprefix $(BASE_DIR),$(BASE_SRC))
 EXTRA_SRC	:=	$(addprefix $(EXTRA_DIR),$(EXTRA_SRC))
