@@ -21,7 +21,10 @@ LIBFT_DIR	:= libft/
 LIBFT		:= $(LIBFT_DIR)libft.a
 
 CC			:= cc
-CFLAGS		= -Wall -Wextra -Werror -g $(INCLUDES)
+MAC1		= -I /Users/psydenst/.brew/opt/readline/include
+MAC2		= -L /Users/psydenst/.brew/opt/readline/lib
+# CFLAGS		= -Wall -Wextra -Werror -g $(MAC1) $(MAC2) $(INCLUDES) # MAC COMPILATION
+CFLAGS		= -Wall -Wextra -Werror -g $(INCLUDES) # LINUX COMPILATION
 ifeq ($(CURRENT_OS), Linux)
 CFLAGS		+= -fPIE
 endif
