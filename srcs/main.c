@@ -6,11 +6,17 @@
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:14:28 by psydenst          #+#    #+#             */
-/*   Updated: 2023/02/14 15:30:28 by tde-souz         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:55:20 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/* int main(void)
+{
+	printf("%d\n", ft_count_pipes("ls  grep mundo"));
+	return (0);
+} */
 
 int	main(int argc, char *argv[], char **envp)
 {

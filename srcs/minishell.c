@@ -12,7 +12,9 @@
 
 #include "minishell.h"
 
+//passar pra outro arquivo
 static char	*get_line(void);
+
 
 void	minishell(t_shell *shell)
 {
@@ -21,7 +23,8 @@ void	minishell(t_shell *shell)
 	while (1)
 	{
 		line = get_line();
-		ft_build_token_list();
+		ft_updateshell(shell);
+		ft_build_token_list(shell, ft_split(line, '|'));
 		free(line);
 	}
 	rl_clear_history();

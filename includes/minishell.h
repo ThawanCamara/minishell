@@ -54,7 +54,6 @@ enum e_token_types
 
 typedef struct s_simple
 {
-	int		cmd_amount;
 	char	*infile;
 	char	*outfile;
 	char	**cmd;
@@ -63,6 +62,7 @@ typedef struct s_simple
 
 typedef struct s_shell
 {
+	int			cmd_amount;
 	int			stdin;
 	int			stdout;
 	char		**envp;
@@ -78,10 +78,11 @@ typedef struct s_shell
 int	g_status;
 
 // init/ft_shellhandler.c
-void	ft_build_token_list(t_list **lst, char *input);
+void	ft_build_token_list(t_shell *shell, char **input);
 
 // init/ft_shellhandler.c
 void	ft_initshell(t_shell *shell, char *envp[]);
+void	ft_updateshell(t_shell *shell, char *line);
 void	ft_clearshell(t_shell *shell);
 
 // minishell.c
@@ -91,7 +92,7 @@ void	minishell(t_shell *shell);
 void	ft_free_arr(void **arr);
 
 // utils/ft_charutils.c
-int	ft_count_pipes(char *str);
+int		ft_count_pipes(char *str);
 
 // utils/ft_get_prompt.c
 char	*ft_get_prompt(void);
