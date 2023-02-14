@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static void	get_tokens(t_list *token_lst, char *cmd);
+static void	get_tokens(t_list *token_lst, char **cmd);
 
 void	ft_build_token_list(t_shell *shell, char **input)
 {
@@ -8,15 +8,20 @@ void	ft_build_token_list(t_shell *shell, char **input)
 
 	i = -1;
 	while (++i < shell->cmd_amount)
-		get_tokens(shell->cmd_table[i].tokens, input[i]);
-	ft_free_arr(input);
+		get_tokens(shell->cmd_table[i].tokens, ft_split(input[i], ' '));
+	ft_free_arr((void **)input);
 }
 
-static void	get_tokens(t_list *token_lst, char *cmd)
+static void	get_tokens(t_list *token_lst, char **cmd)
 {
-	while (*cmd)
+	int	i;
+
+	(void) token_lst;
+	i = 0;
+	while (cmd[i])
 	{
-		
-		cmd++;
+		printf("token: %s\n", cmd[i]);
+		i++;
 	}
+	ft_free_arr((void **)cmd);
 }

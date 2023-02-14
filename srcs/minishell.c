@@ -23,7 +23,7 @@ void	minishell(t_shell *shell)
 	while (1)
 	{
 		line = get_line();
-		ft_updateshell(shell);
+		ft_updateshell(shell, line);
 		ft_build_token_list(shell, ft_split(line, '|'));
 		free(line);
 	}

@@ -13,11 +13,11 @@ void	ft_updateshell(t_shell *shell, char *line)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	shell->cmd_amount = ft_count_pipes(line) + 1;
 	shell->cmd_table = malloc(sizeof(t_simple) * shell->cmd_amount + 1);
-	shell->cmd_amount[shell->cmd_amount] = NULL;
-	while (i < shell->cmd_amount)
+	//shell->cmd_table[shell->cmd_amount] = NULL;
+	while (++i < shell->cmd_amount)
 		shell->cmd_table->tokens = NULL;
 }
 
