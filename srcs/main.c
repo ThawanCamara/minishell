@@ -6,15 +6,32 @@
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:14:28 by psydenst          #+#    #+#             */
-/*   Updated: 2023/02/14 15:55:20 by tde-souz         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:26:52 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* int main(void)
+/* void printf_list2(void *content)
 {
-	printf("%d\n", ft_count_pipes("ls  grep mundo"));
+	ft_printf("%s\n", (char *) content);
+}
+
+int main(void)
+{
+	t_list *lst;
+
+	lst = NULL;
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("ola")));
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("ola")));
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("ola")));
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("ola")));
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("ola")));
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("ola")));
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("ola")));
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("ola")));
+	//printf("%s\n", (char *) lst->content);
+	ft_lstiter(lst, printf_list2);
 	return (0);
 } */
 

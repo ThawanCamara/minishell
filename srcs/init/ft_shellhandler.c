@@ -16,9 +16,10 @@ void	ft_updateshell(t_shell *shell, char *line)
 	i = -1;
 	shell->cmd_amount = ft_count_pipes(line) + 1;
 	shell->cmd_table = malloc(sizeof(t_simple) * shell->cmd_amount + 1);
-	//shell->cmd_table[shell->cmd_amount] = NULL;
+	//shell->cmd_table[shell->cmd_amount] = 0;
 	while (++i < shell->cmd_amount)
 		shell->cmd_table->tokens = NULL;
+		//shell->cmd_table->tokens = malloc(sizeof(t_list)); // falta dar free
 }
 
 // Não parece seguro dar free em cmd_table aqui. Ver depois. 
