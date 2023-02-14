@@ -57,7 +57,7 @@ typedef struct s_simple
 	char	*infile;
 	char	*outfile;
 	char	**cmd;
-	t_list	*tokens;
+	t_list	*tokens; //*tokens
 } t_simple;
 
 typedef struct s_shell
