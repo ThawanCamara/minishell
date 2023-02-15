@@ -32,7 +32,7 @@
 /* ************************************************************************** */
 /*								   DEFINITIONS								  */
 /* ************************************************************************** */
-//stuff :D
+# define CHECKER_FUNCTION_COUNT 3
 /* ************************************************************************** */
 /*								   ENUMERATIONS								  */
 /* ************************************************************************** */
@@ -67,6 +67,7 @@ typedef struct s_shell
 	int			stdout;
 	char		**envp;
 	t_simple	*cmd_table;
+	void		**fcheck;
 } t_shell;
 
 /* ************************************************************************** */
@@ -84,6 +85,7 @@ void	ft_build_token_list(t_shell *shell, char **input);
 void	ft_initshell(t_shell *shell, char *envp[]);
 void	ft_updateshell(t_shell *shell, char *line);
 void	ft_clearshell(t_shell *shell);
+void	ft_init_check_functions(t_shell *shell);
 
 // minishell.c
 void	minishell(t_shell *shell);
