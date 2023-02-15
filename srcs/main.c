@@ -6,7 +6,7 @@
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:14:28 by psydenst          #+#    #+#             */
-/*   Updated: 2023/02/14 21:25:49 by tde-souz         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:25:41 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int main(void)
 	
 	t_shell	shell;
 	ft_initshell(&shell, NULL);
-	((void (*)())shell.fcheck[0])();
+	for (int i = 0; i < CHECKER_FUNCTION_COUNT; i++)
+		((void (*)())shell.fcheck[i])();
+		//((void (*)())shell.fcheck[i])(1); // da pra passar argumentos, as funções que podem usar usam e as que nao podem ignoram, q louco
 	ft_clearshell(&shell);	
 }
 

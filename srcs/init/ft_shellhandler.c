@@ -40,13 +40,14 @@ void	f1()
 {
 	printf("f1\n");
 }
-void	f2()
+int	f2()
 {
 	printf("f2\n");
+	return (0);
 }
-void	f3()
+void	f3(int a)
 {
-	printf("f3\n");
+	printf("f3 - %d\n", a);
 }
 
 void	ft_init_check_functions(t_shell *shell)
