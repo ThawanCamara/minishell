@@ -36,9 +36,10 @@ void	ft_clearshell(t_shell *shell)
 	free(shell->fcheck);
 }
 
-void	f1()
+char	*f1(t_shell *shell, t_list **lst, char *cmd)
 {
-	printf("f1\n");
+	char *value = ft_strdup("ola mundo");
+	return (value);
 }
 int	f2()
 {
