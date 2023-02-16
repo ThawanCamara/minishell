@@ -23,9 +23,17 @@ void	minishell(t_shell *shell)
 	while (1)
 	{
 		line = get_line();
-		ft_updateshell(shell, line);
-		ft_build_token_list(shell, ft_split(line, '|'));
-		free(line);
+		if (quotes_verification(line) == 0)
+		{
+			free(line);
+			printf("Error\n");
+		}
+		else
+		{
+			ft_updateshell(shell, line);
+			ft_build_token_list(shell, ft_split(line, '|'));
+			free(line);
+		}
 	}
 	rl_clear_history();
 }

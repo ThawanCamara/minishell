@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 char	*ft_get_prompt(void)
 {
@@ -31,3 +31,4 @@ char	*ft_get_prompt(void)
 	str = append_line(str, "$> ");
 	return (str);
 }
+

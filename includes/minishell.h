@@ -13,7 +13,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft.h"
+# include "../libft/libft.h"
 # include "colortag.h"
 # include <stdio.h>
 # include <unistd.h>
@@ -102,5 +102,9 @@ char	*ft_get_prompt(void);
 // utils/ft_strdup_arr.c
 char	**ft_strdup_arr(char **arr);
 
+// utils/quotes.c
+int	quotes_verification(char *str);
+int	single_quotes(char *str, int i);
+int double_quotes(char *str, int i);
 /* ************************************************************************** */
 #endif

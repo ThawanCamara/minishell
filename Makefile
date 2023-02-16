@@ -21,8 +21,8 @@ LIBFT_DIR	:= libft/
 LIBFT		:= $(LIBFT_DIR)libft.a
 
 CC			:= cc
-MAC1		= -I /Users/psydenst/.brew/opt/readline/include
-MAC2		= -L /Users/psydenst/.brew/opt/readline/lib
+MAC1		= -I /opt/homebrew/opt/readline/include #local pedro compilation
+MAC2		= -L /opt/homebrew/opt/readline/lib # local pedro compilation
 # CFLAGS		= -Wall -Wextra -Werror -g $(MAC1) $(MAC2) $(INCLUDES) # MAC COMPILATION
 ifeq ($(CURRENT_OS), Linux)
 CFLAGS		= -Wall -Wextra -Werror -g $(INCLUDES) -fPIE # LINUX COMPILATION
@@ -53,7 +53,8 @@ SRCS		:=	srcs/minishell.c	\
 				srcs/utils/ft_free_arr.c	\
 				srcs/token/ft_build_token_list.c	\
 				srcs/utils/ft_charutils.c	\
-				srcs/main.c
+				srcs/main.c \
+				srcs/utils/quotes.c
 
 OBJS		:= $(SRCS:.c=.o)
 # **************************************************************************** #

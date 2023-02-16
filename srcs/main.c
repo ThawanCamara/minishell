@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
+/*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:14:28 by psydenst          #+#    #+#             */
-/*   Updated: 2023/02/15 11:25:41 by tde-souz         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:53:19 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,29 @@ void printf_list2()
 	ft_printf("oi\n");
 }
 
-int main(void)
-{
-// 	t_list *lst;
-// 	void *func;
+// int main(void) // TEST
+// {
+// // 	t_list *lst;
+// // 	void *func;
 
-// 	lst = NULL;
-// 	func = printf_list2;
-// 	ft_lstadd_back(&lst, ft_lstnew(ft_itoa(12), 0));
-// 	ft_lstadd_back(&lst, ft_lstnew(ft_itoa(14), 0));
-// 	//ft_lstiter(lst, func);
-// 	((void (*)())func)();
+// // 	lst = NULL;
+// // 	func = printf_list2;
+// // 	ft_lstadd_back(&lst, ft_lstnew(ft_itoa(12), 0));
+// // 	ft_lstadd_back(&lst, ft_lstnew(ft_itoa(14), 0));
+// // 	//ft_lstiter(lst, func);
+// // 	((void (*)())func)();
 	
 	
 	
-	t_shell	shell;
-	ft_initshell(&shell, NULL);
-	for (int i = 0; i < CHECKER_FUNCTION_COUNT; i++)
-		((void (*)())shell.fcheck[i])();
-		//((void (*)())shell.fcheck[i])(1); // da pra passar argumentos, as funções que podem usar usam e as que nao podem ignoram, q louco
-	ft_clearshell(&shell);	
-}
+// 	t_shell	shell;
+// 	ft_initshell(&shell, NULL);
+// 	for (int i = 0; i < CHECKER_FUNCTION_COUNT; i++)
+// 		((void (*)())shell.fcheck[i])();
+// 		//((void (*)())shell.fcheck[i])(1); // da pra passar argumentos, as funções que podem usar usam e as que nao podem ignoram, q louco
+// 	ft_clearshell(&shell);	
+// }
 
-/* int	main(int argc, char *argv[], char **envp)
+int	main(int argc, char *argv[], char **envp) // MINISHELL
 {
 	t_shell	shell;
 
@@ -51,4 +51,4 @@ int main(void)
 	minishell(&shell);
 	ft_clearshell(&shell);
 	return (0);
-} */
+}
