@@ -7,6 +7,7 @@ void	ft_initshell(t_shell *shell, char *envp[])
 	shell->stdout = 1;
 	shell->envp = ft_strdup_arr(envp);
 	shell->cmd_table = NULL;
+	shell->qflag = 0;
 	ft_init_check_functions(shell);
 }
 

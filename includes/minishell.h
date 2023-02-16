@@ -68,6 +68,7 @@ typedef struct s_shell
 	char		**envp;
 	t_simple	*cmd_table;
 	void		**fcheck;
+	int			qflag;
 } t_shell;
 
 /* ************************************************************************** */
