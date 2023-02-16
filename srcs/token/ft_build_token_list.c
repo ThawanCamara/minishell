@@ -34,7 +34,7 @@ void	get_tokens(t_list **token_lst, char *cmd)
 	{
 		if (cmd[i + 1] == ' ' || cmd[i + 1] == 0)
 		{
-			token = ft_substr(cmd, k, i - k);
+			token = ft_substr(cmd, k, i + 1 - k);
 			ft_lstadd_back(token_lst, ft_lstnew(token, ARGS));
 			k = i + 1;
 			i += ft_strlen(token) + 1;

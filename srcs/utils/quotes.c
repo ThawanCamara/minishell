@@ -55,5 +55,5 @@ int	quotes_verification(char *str)
 
 // int main()
 // {
-// 	printf("%d\n", quotes_verification("\"hello\" "));
+// 	printf("%d\n", quotes_verification("\"hello\""));
 // }
