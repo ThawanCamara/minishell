@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strdup_arr.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/21 13:57:59 by tde-souz          #+#    #+#             */
+/*   Updated: 2023/02/21 13:57:59 by tde-souz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	**ft_strdup_arr(char **arr)
@@ -9,7 +21,7 @@ char	**ft_strdup_arr(char **arr)
 		return (NULL);
 	i = 0;
 	while (arr[i] != NULL)
-		i++; 
+		i++;
 	ret = (char **)malloc(sizeof(char *) * ++i);
 	ret[--i] = NULL;
 	while (--i >= 0)

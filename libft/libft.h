@@ -180,5 +180,7 @@ int		ft_clean(void *ptr, int ret);
 void	throw_error(char *msg, int error_code);
 void	ft_striter(char **array, void (*f)());
 void	nfree_arr(int n, ...);
+int		ft_isescape(int c);
+int		ft_isquote(int c);
 
 #endif

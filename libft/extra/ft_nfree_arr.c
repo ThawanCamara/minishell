@@ -14,9 +14,9 @@
 
 void	nfree_arr(int n, ...)
 {
-	va_list args;
+	va_list	args;
 	void	**arr;
-	
+
 	va_start(args, n);
 	while (n-- > 0)
 	{

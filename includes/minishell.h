@@ -13,7 +13,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include "colortag.h"
 # include <stdio.h>
 # include <unistd.h>
@@ -32,18 +32,21 @@
 /* ************************************************************************** */
 /*								   DEFINITIONS								  */
 /* ************************************************************************** */
-# define CHECKER_FUNCTION_COUNT 3
+# define CHECKER_FUNCTION_COUNT 6
 /* ************************************************************************** */
 /*								   ENUMERATIONS								  */
 /* ************************************************************************** */
 
 enum e_token_types
 {
-	PIPE = 10,
 	CMD = 11,
 	ARGS = 12,
-	REDIR = 13,
-	DOLLAR = 14
+	RED_OUT = 13, // >
+	RED_APPEND = 14, // >>
+	RED_IN = 15, // <	
+	RED_HRDOC = 16, // <<
+	DOLLAR = 17,
+	ENV = 18 // {} depois do $ || tudo o que vier depois $ até achar um ' '.
 };
 
 /* ************************************************************************** */
@@ -57,7 +60,7 @@ typedef struct s_simple
 	char	*infile;
 	char	*outfile;
 	char	**cmd;
-	t_list	*tokens; //*tokens
+	t_list	*tokens;
 } t_simple;
 
 typedef struct s_shell
@@ -69,6 +72,7 @@ typedef struct s_shell
 	t_simple	*cmd_table;
 	void		**fcheck;
 	int			qflag;
+	int			is_command;
 } t_shell;
 
 /* ************************************************************************** */
@@ -88,6 +92,18 @@ void	ft_updateshell(t_shell *shell, char *line);
 void	ft_clearshell(t_shell *shell);
 void	ft_init_check_functions(t_shell *shell);
 
+// lexer/ft_lexer.c
+int	ft_lexer(char *line);
+
+// lexer/ft_lexer_checks.c
+int 	ft_redir_out(char *line, int qflag);
+int 	ft_redir_append(char *line, int qflag);
+int 	ft_redir_in(char *line, int qflag);
+int 	ft_redir_heredoc(char *line, int qflag);
+
+// lexer/ft_lexer_utils.c
+int		ft_validate_next(char *line, const char *badset);
+
 // minishell.c
 void	minishell(t_shell *shell);
 
@@ -96,6 +112,7 @@ void	ft_free_arr(void **arr);
 
 // utils/ft_charutils.c
 int		ft_count_pipes(char *str);
+int		ft_quotecheck(char c, int qflag);
 
 // utils/ft_get_prompt.c
 char	*ft_get_prompt(void);
@@ -103,9 +120,11 @@ char	*ft_get_prompt(void);
 // utils/ft_strdup_arr.c
 char	**ft_strdup_arr(char **arr);
 
-// utils/quotes.c
-int	quotes_verification(char *str);
-int	single_quotes(char *str, int i);
-int double_quotes(char *str, int i);
+// utils/ft_strutils.c
+int	ft_closedquotes_check(char *str);
+
+// utils/ft_split_cmds.c
+char	**ft_split_cmds(char const *s, char c);
+size_t	ft_count_cmds(const char *s);
 /* ************************************************************************** */
 #endif

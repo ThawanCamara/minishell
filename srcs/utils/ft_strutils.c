@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_prompt.c                                    :+:      :+:    :+:   */
+/*   ft_strutils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:18:15 by tde-souz          #+#    #+#             */
-/*   Updated: 2023/02/13 17:18:15 by tde-souz         ###   ########.fr       */
+/*   Created: 2023/02/21 14:05:39 by tde-souz          #+#    #+#             */
+/*   Updated: 2023/02/21 14:05:39 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_get_prompt(void)
+int	ft_closedquotes_check(char *str)
 {
-	char	*cwd;
-	char	*str;
-	char	*tmp;
+	int		i;
+	char	c;
 
-	str = NULL;
-	cwd = getcwd(NULL, 0);
-	if (ft_strrchr(cwd, '/') != NULL)
-		str = ft_strdup(ft_strrchr(cwd, '/') + 1);
-	free(cwd);
-	tmp = ft_strdup(LGREEN);
-	tmp = append_line(tmp, str);
-	free(str);
-	str = tmp;
-	str = append_line(str, RESET);
-	str = append_line(str, "$> ");
-	return (str);
+	i = -1;
+	c = 0;
+	while (*(str + ++i))
+	{
+		if (*(str + i) == '\"' || *(str + i) == '\'')
+		{
+			c = *(str + i);
+			while (*(str + i))
+			{
+				if (*(str + ++i) == c)
+				{
+					c = 0;
+					break ;
+				}
+			}
+		}
+		if (*(str + i) == 0)
+			break ;
+	}
+	return (c != 0);
 }

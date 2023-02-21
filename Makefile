@@ -53,8 +53,12 @@ SRCS		:=	srcs/minishell.c	\
 				srcs/utils/ft_free_arr.c	\
 				srcs/token/ft_build_token_list.c	\
 				srcs/utils/ft_charutils.c	\
+				srcs/lexer/ft_lexer.c	\
+				srcs/lexer/ft_lexer_utils.c	\
+				srcs/lexer/ft_lexer_checks.c	\
+				srcs/utils/ft_split_cmds.c	\
+				srcs/utils/ft_strutils.c	\
 				srcs/main.c \
-				srcs/utils/quotes.c
 
 OBJS		:= $(SRCS:.c=.o)
 # **************************************************************************** #

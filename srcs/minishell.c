@@ -12,9 +12,7 @@
 
 #include "minishell.h"
 
-//passar pra outro arquivo
-static char	*get_line(void);
-
+char	*get_line(void);
 
 void	minishell(t_shell *shell)
 {
@@ -23,7 +21,7 @@ void	minishell(t_shell *shell)
 	while (1)
 	{
 		line = get_line();
-		if (quotes_verification(line) == 0)
+		if (ft_closedquotes_check(line))
 		{
 			free(line);
 			printf("Error\n");
@@ -31,14 +29,14 @@ void	minishell(t_shell *shell)
 		else
 		{
 			ft_updateshell(shell, line);
-			ft_build_token_list(shell, ft_split(line, '|'));
+			ft_build_token_list(shell, ft_split_cmds(line, '|'));
 			free(line);
 		}
 	}
 	rl_clear_history();
 }
 
-static char	*get_line(void)
+char	*get_line(void)
 {
 	char	*prompt;
 	char	*line;
