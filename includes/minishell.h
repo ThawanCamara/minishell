@@ -96,7 +96,7 @@ char	**ft_getenv(char *var, char **envp);
 char	**ft_delenv(char *var, char **envp);
 
 // builtins/ft_exit.c
-int	ft_exit(t_shell *shell);
+int	ft_exit(t_shell *shell, char *argv[]);
 
 // builtins/ft_export.c
 int	ft_export(t_shell *shell, char *argv[]);

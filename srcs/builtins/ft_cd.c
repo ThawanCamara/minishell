@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/23 14:13:10 by tde-souz          #+#    #+#             */
+/*   Updated: 2023/02/23 14:13:10 by tde-souz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	cd_home(t_shell *shell)
@@ -16,8 +28,8 @@ int	cd_home(t_shell *shell)
 		return (ft_error_msg("Could not open the directory", 1));
 	}
 	cwd = getcwd(NULL, 0);
-	ft_setenv("OLDPWD", cwd, shell->envp);
-	ft_setenv("PWD", env[1], shell->envp);
+	shell->envp = ft_setenv("OLDPWD", cwd, shell->envp);
+	shell->envp = ft_setenv("PWD", env[1], shell->envp);
 	chdir(env[1]);
 	closedir(dir);
 	free(cwd);
@@ -45,15 +57,16 @@ int	cd_previous(t_shell *shell)
 		ft_nfree_arr(2, env[0], env[1]);
 		return (ft_error_msg("Could not open the directory", 1));
 	}
-	ft_setenv("OLDPWD", env[0][1], shell->envp);
-	ft_setenv("PWD", env[1][1], shell->envp);
+	shell->envp = ft_setenv("OLDPWD", env[0][1], shell->envp);
+	shell->envp = ft_setenv("PWD", env[1][1], shell->envp);
 	chdir(env[1][1]);
 	closedir(dir);
+	printf("%s\n", env[1][1]);
 	ft_nfree_arr(2, env[0], env[1]);
 	return (0);
 }
 
-int cd_path(t_shell *shell, char *path)
+int	cd_path(t_shell *shell, char *path)
 {
 	DIR		*dir;
 	char	*cwd;
@@ -62,11 +75,11 @@ int cd_path(t_shell *shell, char *path)
 	if (dir == NULL)
 		return (ft_error_msg("Could not open the directory", 1));
 	cwd = getcwd(NULL, 0);
-	ft_setenv("OLDPWD", cwd, shell->envp);
+	shell->envp = ft_setenv("OLDPWD", cwd, shell->envp);
 	free(cwd);
 	chdir(path);
 	cwd = getcwd(NULL, 0);
-	ft_setenv("PWD", cwd, shell->envp);
+	shell->envp = ft_setenv("PWD", cwd, shell->envp);
 	free(cwd);
 	closedir(dir);
 	return (0);

@@ -25,8 +25,9 @@ int	main(int argc, char *argv[], char **envp)
 	//char *args2[] = {"export", "KEY2=VALUE2", 0};
 	//char *args3[] = {"export", "KEY3=", 0};
 	// char *args4[] = {"unset", "HOME", 0};
-	//char *args5[] = {"cd", "-", 0};
-	char *args5[] = {"cd", "../", 0};
+	//char *args5[] = {"cd", "../", 0};
+	char *args6[] = {"cd", "-", 0};
+	char *args7[] = {"exit", "12345", 0};
 
 	(void) argc;
 	(void) argv;
@@ -35,24 +36,28 @@ int	main(int argc, char *argv[], char **envp)
 	//ft_echo(&shell, args1);
 	// ft_unset(&shell, args4);
 	
-	char **env1;
-	char **env2;
-	ft_cd(&shell, args5);
-	env1 = ft_getenv("OLDPWD", shell.envp);
-	env2 = ft_getenv("PWD", shell.envp);
-	if (env1)
-		ft_printf("OLDPWD: %s\n", env1[1]);
-	if (env2)
-		ft_printf("PWD: %s\n", env2[1]);
-	ft_nfree_arr(2, env1, env2);
-	ft_cd(&shell, args5);
-	env1 = ft_getenv("OLDPWD", shell.envp);
-	env2 = ft_getenv("PWD", shell.envp);
-	if (env1)
-		ft_printf("OLDPWD: %s\n", env1[1]);
-	if (env2)
-		ft_printf("PWD: %s\n", env2[1]);
-	ft_nfree_arr(2, env1, env2);
+	printf("RS: %d\n", ft_exit(&shell, args7));
+	ft_cd(&shell, args6);
+	ft_cd(&shell, args6);
+	
+	// char **env1;
+	// char **env2;
+	// ft_cd(&shell, args5);
+	// env1 = ft_getenv("OLDPWD", shell.envp);
+	// env2 = ft_getenv("PWD", shell.envp);
+	// if (env1)
+	// 	ft_printf("OLDPWD: %s\n", env1[1]);
+	// if (env2)
+	// 	ft_printf("PWD: %s\n", env2[1]);
+	// ft_nfree_arr(2, env1, env2);
+	// ft_cd(&shell, args5);
+	// env1 = ft_getenv("OLDPWD", shell.envp);
+	// env2 = ft_getenv("PWD", shell.envp);
+	// if (env1)
+	// 	ft_printf("OLDPWD: %s\n", env1[1]);
+	// if (env2)
+	// 	ft_printf("PWD: %s\n", env2[1]);
+	// ft_nfree_arr(2, env1, env2);
 
 	ft_pwd();
 	//minishell(&shell);
