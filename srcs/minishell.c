@@ -12,31 +12,26 @@
 
 #include "minishell.h"
 
-char	*get_line(void);
+char	*get_line(t_shell *shell);
 
 void	minishell(t_shell *shell)
 {
 	static char	*line = NULL;
 
-	while (1)
+	while (shell->exit == 0)
 	{
-		line = get_line();
-		if (ft_closedquotes_check(line))
-		{
-			free(line);
-			printf("Error\n");
-		}
-		else
+		line = get_line(shell);
+		if (ft_lexer(line) == 0)
 		{
 			ft_updateshell(shell, line);
-			ft_build_token_list(shell, ft_split_cmds(line, '|'));
-			free(line);
+			//ft_build_token_list(shell, ft_split_cmds(line, '|'));
 		}
+		free(line);
 	}
 	rl_clear_history();
 }
 
-char	*get_line(void)
+char	*get_line(t_shell *shell)
 {
 	char	*prompt;
 	char	*line;
@@ -45,10 +40,10 @@ char	*get_line(void)
 	line = readline(prompt);
 	if (line == NULL)
 	{
-		printf("exit\n");
+		ft_putstr_fd("exit\n", 2);
 		free(prompt);
-		free(line);
 		rl_clear_history();
+		ft_clearshell(shell);
 		exit(0);
 	}
 	if (ft_strncmp(line, "", 1) != 0)

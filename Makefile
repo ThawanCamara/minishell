@@ -48,9 +48,7 @@ BOLD		:= \e[1m
 				
 SRCS		:=	srcs/minishell.c	\
 				srcs/utils/ft_get_prompt.c	\
-				srcs/utils/ft_strdup_arr.c	\
 				srcs/init/ft_shellhandler.c	\
-				srcs/utils/ft_free_arr.c	\
 				srcs/token/ft_build_token_list.c	\
 				srcs/utils/ft_charutils.c	\
 				srcs/lexer/ft_lexer.c	\
@@ -58,6 +56,16 @@ SRCS		:=	srcs/minishell.c	\
 				srcs/lexer/ft_lexer_checks.c	\
 				srcs/utils/ft_split_cmds.c	\
 				srcs/utils/ft_strutils.c	\
+				srcs/signal/ft_signalhandler.c	\
+				srcs/error/ft_error.c	\
+				srcs/builtins/ft_echo.c	\
+				srcs/builtins/ft_exit.c	\
+				srcs/builtins/ft_cd.c	\
+				srcs/builtins/ft_env.c	\
+				srcs/builtins/ft_pwd.c	\
+				srcs/builtins/ft_unset.c	\
+				srcs/builtins/ft_export.c	\
+				srcs/builtins/ft_env_utils.c	\
 				srcs/main.c \
 
 OBJS		:= $(SRCS:.c=.o)

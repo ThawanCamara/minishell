@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_throw_error.c                                   :+:      :+:    :+:   */
+/*   ft_strcombine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 02:34:42 by tde-souz          #+#    #+#             */
-/*   Updated: 2023/02/22 17:16:35 by tde-souz         ###   ########.fr       */
+/*   Created: 2022/07/06 00:22:39 by tde-souz          #+#    #+#             */
+/*   Updated: 2023/02/22 14:02:37 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_throw_error(char *msg, int error_code)
+static char	*combine_handler(int n, va_list args)
 {
-	ft_putendl_fd(">>> \e[38;5;9mError\e[0m <<<", 2);
-	ft_putstr_fd("Exit with error code: ", 2);
-	ft_putnbr_fd(error_code, 2);
-	ft_putstr_fd("\n", 2);
-	ft_putendl_fd(msg, 2);
-	exit(error_code);
+	char	*ret;
+	char	*tmp;
+
+	if (n <= 0)
+		return (NULL);
+	ret = ft_strdup(va_arg(args, char *));
+	while (--n > 0)
+	{
+		tmp = ret;
+		ret = ft_strjoin(ret, va_arg(args, char *));
+		free(tmp);
+	}
+	return (ret);
+}
+
+char	*ft_strcombine(int n, ...)
+{
+	char	*ret;
+	va_list	args;
+
+	va_start(args, n);
+	ret = combine_handler(n, args);
+	va_end(args);
+	return (ret);
 }

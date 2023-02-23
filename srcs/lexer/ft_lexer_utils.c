@@ -14,25 +14,38 @@
 
 static int	ft_badchar(int c, const char *badset)
 {
+	int	i;
+
 	if (badset == NULL)
 		return (0);
-	while (*badset)
+	i = 0;
+	while (*(badset + i))
 	{
-		if (*badset == c)
-			return (*badset);
-		badset++;
+		if (*(badset + i) == c)
+			return (*(badset + i));
+		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 int	ft_validate_next(char *line, const char *badset)
 {
-	while (*line)
+	int	c;
+	int	i;
+
+	i = 0;
+	while (*(line + i))
 	{
-		if (*line == ' ' || ft_isescape(*line))
-			line++;
+		if (*(line + i) == ' ' || ft_isescape(*(line + i)))
+			i++;
 		else
-			return (ft_badchar(*line, badset));
+		{
+			c = ft_badchar(*(line + i), badset);
+			if (c > 0)
+				ft_error_token(c);
+			return (c != -1);
+		}
 	}
-	return (-1);
+	ft_error_token(*(line + i));
+	return (1);
 }

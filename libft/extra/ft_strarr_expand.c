@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strutils.c                                      :+:      :+:    :+:   */
+/*   ft_strarr_expand.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 14:05:39 by tde-souz          #+#    #+#             */
-/*   Updated: 2023/02/21 14:05:39 by tde-souz         ###   ########.fr       */
+/*   Created: 2023/02/22 13:27:02 by tde-souz          #+#    #+#             */
+/*   Updated: 2023/02/22 13:27:02 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-// to remove
-int	ft_closedquotes_check(char *str)
+char	**ft_strarr_expand(char **array, char *new)
 {
+	char	**ret;
+	size_t	len;
 	int		i;
-	char	c;
 
+	len = ft_strarr_size(array);
+	ret = (char **)malloc(sizeof(char *) * (len + 2));
 	i = -1;
-	c = 0;
-	while (*(str + ++i))
-	{
-		if (*(str + i) == '\"' || *(str + i) == '\'')
-		{
-			c = *(str + i);
-			while (*(str + i))
-			{
-				if (*(str + ++i) == c)
-				{
-					c = 0;
-					break ;
-				}
-			}
-		}
-		if (*(str + i) == 0)
-			break ;
-	}
-	return (c != 0);
+	while (*(array + ++i))
+		*(ret + i) = ft_strdup(*(array + i));
+	*(ret + i++) = ft_strdup(new);
+	*(ret + i) = NULL;
+	return (ret);
 }

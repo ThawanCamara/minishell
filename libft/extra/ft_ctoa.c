@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strutils.c                                      :+:      :+:    :+:   */
+/*   ft_ctoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 14:05:39 by tde-souz          #+#    #+#             */
-/*   Updated: 2023/02/21 14:05:39 by tde-souz         ###   ########.fr       */
+/*   Created: 2023/02/22 18:18:54 by tde-souz          #+#    #+#             */
+/*   Updated: 2023/02/22 18:18:54 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-// to remove
-int	ft_closedquotes_check(char *str)
+char	*ft_ctoa(char c)
 {
-	int		i;
-	char	c;
+	char	*ret;
 
-	i = -1;
-	c = 0;
-	while (*(str + ++i))
-	{
-		if (*(str + i) == '\"' || *(str + i) == '\'')
-		{
-			c = *(str + i);
-			while (*(str + i))
-			{
-				if (*(str + ++i) == c)
-				{
-					c = 0;
-					break ;
-				}
-			}
-		}
-		if (*(str + i) == 0)
-			break ;
-	}
-	return (c != 0);
+	ret = (char *)malloc(sizeof(char) * 2);
+	if (ret == NULL)
+		return (NULL);
+	ret[0] = c;
+	ret[1] = 0;
+	return (ret);
 }

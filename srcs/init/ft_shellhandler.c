@@ -15,11 +15,9 @@
 void	ft_initshell(t_shell *shell, char *envp[])
 {
 	shell->cmd_amount = 0;
-	shell->stdin = 0;
-	shell->stdout = 1;
-	shell->envp = ft_strdup_arr(envp);
+	shell->exit = 0;
+	shell->envp = ft_strarr_dup(envp);
 	shell->cmd_table = NULL;
-	shell->qflag = 0;
 	ft_init_check_functions(shell);
 }
 
@@ -36,15 +34,10 @@ void	ft_updateshell(t_shell *shell, char *line)
 	}
 }
 
-// Não parece seguro dar free em cmd_table aqui. Ver depois. 
-//ideia -> Liberar cmd_table com ft_clean pra garantir ponteiro pra nulo e prevenir double free
 void	ft_clearshell(t_shell *shell)
 {
 	ft_free_arr((void **)shell->envp);
-	/* for (int i = 0; i < shell->cmd_amount; i++)
-		free(shell->cmd_table[i]);
-	free(shell->cmd_table); */
-	free(shell->cmd_table);
+	ft_clean(shell->cmd_table, 0);
 	free(shell->fcheck);
 }
 

@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lexer.c                                         :+:      :+:    :+:   */
+/*   ft_nfree_arr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 21:33:07 by tde-souz          #+#    #+#             */
-/*   Updated: 2023/02/16 21:33:07 by tde-souz         ###   ########.fr       */
+/*   Created: 2023/02/14 15:05:31 by tde-souz          #+#    #+#             */
+/*   Updated: 2023/02/14 15:05:31 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	ft_lexer(char *line)
+// Free memory from a group of pointers
+void	ft_nfree(int n, ...)
 {
-	int	ret;
-	int	qflag;
+	va_list	args;
+	void	*ptr;
 
-	ret = 0;
-	qflag = 0;
-	while (*line && ret == 0)
+	va_start(args, n);
+	while (n-- > 0)
 	{
-		qflag = ft_quotecheck(*line, qflag);
-		ret += ft_redir_append(line, qflag, ret);
-		ret += ft_redir_heredoc(line, qflag, ret);
-		ret += ft_redir_out(line, qflag, ret);
-		ret += ft_redir_in(line, qflag, ret);
-		line++;
+		ptr = va_arg(args, void *);
+		free(ptr);
 	}
-	if (ret == 0 && qflag != 0)
-		ft_error_quotes();
-	return (ret + qflag);
+	va_end(args);
 }

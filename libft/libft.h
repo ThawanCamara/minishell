@@ -176,11 +176,20 @@ int		ft_puthexup_n(unsigned int n, int fd);
  *	EXTRA FUNCTIONS
  */
 
+char	*ft_ctoa(char c);
 int		ft_clean(void *ptr, int ret);
-void	throw_error(char *msg, int error_code);
+void	ft_throw_error(char *msg, int error_code);
 void	ft_striter(char **array, void (*f)());
-void	nfree_arr(int n, ...);
+void	ft_nfree_arr(int n, ...);
+void	ft_nfree(int n, ...);
 int		ft_isescape(int c);
 int		ft_isquote(int c);
+char	*ft_strcombine(int n, ...);
+char	**ft_strarr_expand(char **array, char *new);
+char	**ft_strarr_remove(char **array, char *target);
+size_t	ft_strarr_size(char **array);
+void	ft_free_arr(void **arr);
+char	**ft_strarr_dup(char **arr);
+size_t	ft_strdiff(char *src, char sep);
 
 #endif

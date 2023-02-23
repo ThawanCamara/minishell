@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup_arr.c                                    :+:      :+:    :+:   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 13:57:59 by tde-souz          #+#    #+#             */
-/*   Updated: 2023/02/21 13:57:59 by tde-souz         ###   ########.fr       */
+/*   Created: 2023/02/22 19:59:45 by tde-souz          #+#    #+#             */
+/*   Updated: 2023/02/22 19:59:45 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_strdup_arr(char **arr)
+int	ft_export(t_shell *shell, char *argv[])
 {
-	char	**ret;
-	int		i;
+	char	*key;
+	char	*value;
 
-	if (arr == NULL || *arr == NULL)
-		return (NULL);
-	i = 0;
-	while (arr[i] != NULL)
-		i++;
-	ret = (char **)malloc(sizeof(char *) * ++i);
-	ret[--i] = NULL;
-	while (--i >= 0)
-		ret[i] = ft_strdup(arr[i]);
-	return (ret);
+	if (argv && argv[1])
+	{
+		key = ft_substr(argv[1], 0, ft_strlen(argv[1]) -
+			ft_strlen(ft_strchr(argv[1], '=')));
+		value = ft_strdup(ft_strchr(argv[1], '=') + 1);
+		shell->envp = ft_setenv(key, value, shell->envp);
+		ft_nfree(2, key, value);
+	}
+	return (0);
 }

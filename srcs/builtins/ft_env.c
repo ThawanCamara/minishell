@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lexer.c                                         :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 21:33:07 by tde-souz          #+#    #+#             */
-/*   Updated: 2023/02/16 21:33:07 by tde-souz         ###   ########.fr       */
+/*   Created: 2023/02/22 19:59:25 by tde-souz          #+#    #+#             */
+/*   Updated: 2023/02/22 19:59:25 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_lexer(char *line)
+static void print_env(char *s)
 {
-	int	ret;
-	int	qflag;
+	ft_putstr_fd(s, 1);
+	ft_putchar_fd('\n', 1);
+}
 
-	ret = 0;
-	qflag = 0;
-	while (*line && ret == 0)
-	{
-		qflag = ft_quotecheck(*line, qflag);
-		ret += ft_redir_append(line, qflag, ret);
-		ret += ft_redir_heredoc(line, qflag, ret);
-		ret += ft_redir_out(line, qflag, ret);
-		ret += ft_redir_in(line, qflag, ret);
-		line++;
-	}
-	if (ret == 0 && qflag != 0)
-		ft_error_quotes();
-	return (ret + qflag);
+int	ft_env(t_shell *shell)
+{
+	ft_striter(shell->envp, print_env);
+	return (0);
 }

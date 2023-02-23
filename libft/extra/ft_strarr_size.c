@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_arr.c                                      :+:      :+:    :+:   */
+/*   ft_strarr_size.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 15:23:44 by tde-souz          #+#    #+#             */
-/*   Updated: 2023/02/14 15:23:44 by tde-souz         ###   ########.fr       */
+/*   Created: 2023/02/22 13:24:53 by tde-souz          #+#    #+#             */
+/*   Updated: 2023/02/22 13:24:53 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	ft_free_arr(void **arr)
+size_t	ft_strarr_size(char **array)
 {
-	ft_striter((char **)arr, free);
-	free(arr);
+	size_t	size;
+	int		i;
+
+	if (array == NULL)
+		return (0);
+	size = 0;
+	i = -1;
+	while (*(array + ++i))
+		size++;
+	return (size);
 }

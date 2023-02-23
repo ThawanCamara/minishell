@@ -12,7 +12,8 @@
 
 #include "libft.h"
 
-void	nfree_arr(int n, ...)
+// Free memory from a group of arrays
+void	ft_nfree_arr(int n, ...)
 {
 	va_list	args;
 	void	**arr;

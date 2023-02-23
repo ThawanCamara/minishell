@@ -66,13 +66,11 @@ typedef struct s_simple
 typedef struct s_shell
 {
 	int			cmd_amount;
-	int			stdin;
-	int			stdout;
 	char		**envp;
 	t_simple	*cmd_table;
 	void		**fcheck;
-	int			qflag;
 	int			is_command;
+	int			exit;
 } t_shell;
 
 /* ************************************************************************** */
@@ -82,6 +80,37 @@ typedef struct s_shell
 /* ************************************************************************** */
 
 int	g_status;
+
+// builtins/ft_cd.c
+int	ft_cd(t_shell *shell, char *argv[]);
+
+// builtins/ft_echo.c
+int	ft_echo(t_shell *shell, char *argv[]);
+
+// builtins/ft_env.c
+int	ft_env(t_shell *shell);
+
+// builtins/ft_env_utils.c
+char	**ft_setenv(char *var, char *value, char **envp);
+char	**ft_getenv(char *var, char **envp);
+char	**ft_delenv(char *var, char **envp);
+
+// builtins/ft_exit.c
+int	ft_exit(t_shell *shell);
+
+// builtins/ft_export.c
+int	ft_export(t_shell *shell, char *argv[]);
+
+// builtins/ft_unset.c
+int	ft_unset(t_shell *shell, char *argv[]);
+
+// builtins/ft_pwd.c
+int		ft_pwd(void);
+
+// error/ft_error.c
+void	ft_error_quotes(void);
+void	ft_error_token(char token);
+int		ft_error_msg(char *msg, int ret);
 
 // init/ft_shellhandler.c
 void	ft_build_token_list(t_shell *shell, char **input);
@@ -96,16 +125,19 @@ void	ft_init_check_functions(t_shell *shell);
 int	ft_lexer(char *line);
 
 // lexer/ft_lexer_checks.c
-int 	ft_redir_out(char *line, int qflag);
-int 	ft_redir_append(char *line, int qflag);
-int 	ft_redir_in(char *line, int qflag);
-int 	ft_redir_heredoc(char *line, int qflag);
+int 	ft_redir_out(char *line, int qflag, int ret);
+int 	ft_redir_append(char *line, int qflag, int ret);
+int 	ft_redir_in(char *line, int qflag, int ret);
+int 	ft_redir_heredoc(char *line, int qflag, int ret);
 
 // lexer/ft_lexer_utils.c
 int		ft_validate_next(char *line, const char *badset);
 
 // minishell.c
 void	minishell(t_shell *shell);
+
+// signal/ft_signal_handler.c
+int	ft_signal_handler(void);
 
 // utils/ft_free_arr.c
 void	ft_free_arr(void **arr);
@@ -126,5 +158,6 @@ int	ft_closedquotes_check(char *str);
 // utils/ft_split_cmds.c
 char	**ft_split_cmds(char const *s, char c);
 size_t	ft_count_cmds(const char *s);
+
 /* ************************************************************************** */
 #endif

@@ -12,48 +12,52 @@
 
 #include "minishell.h"
 
-int	ft_redir_out(char *line, int qflag)
+int	ft_redir_out(char *line, int qflag, int ret)
 {
 	const char	target = '>';
-	const char	*badset = "*;\\\n<";
+	const char	*badset = "*;\n<";
 
-	if (qflag > 0)
+	// printf("> %d\n", ret);
+	if (qflag > 0 || ret > 0)
 		return (0);
 	if (*line == target)
 		return (ft_validate_next(line + 1, badset));
 	return (0);
 }
 
-int	ft_redir_in(char *line, int qflag)
+int	ft_redir_in(char *line, int qflag, int ret)
 {
 	const char	target = '<';
-	const char	*badset = "*;\\\n>";
+	const char	*badset = "*;\n>";
 
-	if (qflag > 0)
+	// printf("< %d\n", ret);
+	if (qflag > 0 || ret > 0)
 		return (0);
 	if (*line == target)
 		return (ft_validate_next(line + 1, badset));
 	return (0);
 }
 
-int	ft_redir_append(char *line, int qflag)
+int	ft_redir_append(char *line, int qflag, int ret)
 {
 	const char	target = '>';
-	const char	*badset = "*;\\\n<>";
+	const char	*badset = "*;\n<>";
 
-	if (qflag > 0)
+	// printf(">> %d\n", ret);
+	if (qflag > 0 || ret > 0 || ft_strlen(line) < 2)
 		return (0);
 	if (*line == target)
 		return (ft_validate_next(line + 2, badset));
 	return (0);
 }
 
-int	ft_redir_heredoc(char *line, int qflag)
+int	ft_redir_heredoc(char *line, int qflag, int ret)
 {
 	const char	target = '<';
-	const char	*badset = "*;\\\n<>";
+	const char	*badset = "*;\n<>";
 
-	if (qflag > 0)
+	// printf("<< %d\n", ret);
+	if (qflag > 0 || ret > 0 || ft_strlen(line) < 2)
 		return (0);
 	if (*line == target)
 		return (ft_validate_next(line + 2, badset));
