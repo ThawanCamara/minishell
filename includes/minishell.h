@@ -112,6 +112,9 @@ void	ft_error_quotes(void);
 void	ft_error_token(char token);
 int		ft_error_msg(char *msg, int ret);
 
+// executor/ft_exec.c
+int	ft_exec(char *pathname, char *argv[], char *envp[]);
+
 // init/ft_shellhandler.c
 void	ft_build_token_list(t_shell *shell, char **input);
 
