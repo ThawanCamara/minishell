@@ -6,7 +6,7 @@
 /*   By: tde-souz <tde-souz@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 00:22:39 by tde-souz          #+#    #+#             */
-/*   Updated: 2023/02/22 14:02:37 by tde-souz         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:12:59 by tde-souz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static char	*combine_handler(int n, va_list args)
 {
 	char	*ret;
 	char	*tmp;
+	char	*arg;
 
 	if (n <= 0)
 		return (NULL);
@@ -23,8 +24,15 @@ static char	*combine_handler(int n, va_list args)
 	while (--n > 0)
 	{
 		tmp = ret;
-		ret = ft_strjoin(ret, va_arg(args, char *));
-		free(tmp);
+		arg = va_arg(args, char *);
+		if (arg)
+		{
+			if (ret)
+				ret = ft_strjoin(ret, arg);
+			else
+				ret = ft_strdup(arg);
+			free(tmp);
+		}
 	}
 	return (ret);
 }

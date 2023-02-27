@@ -191,5 +191,7 @@ size_t	ft_strarr_size(char **array);
 void	ft_free_arr(void **arr);
 char	**ft_strarr_dup(char **arr);
 size_t	ft_strdiff(char *src, char sep);
+char	*ft_strinsert(char	*dst, char *graft, unsigned int start);
+char	*ft_str_detach(char	*str, int start, int end);
 
 #endif

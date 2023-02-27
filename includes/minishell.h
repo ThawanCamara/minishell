@@ -115,6 +115,9 @@ int		ft_error_msg(char *msg, int ret);
 // executor/ft_exec.c
 int	ft_exec(char *pathname, char *argv[], char *envp[]);
 
+//expansion/ft_expand_var.c
+char	*ft_expand_var(char *str, char *envp[]);
+
 // init/ft_shellhandler.c
 void	ft_build_token_list(t_shell *shell, char **input);
 

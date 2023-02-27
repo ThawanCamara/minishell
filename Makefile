@@ -67,6 +67,7 @@ SRCS		:=	srcs/minishell.c	\
 				srcs/builtins/ft_export.c	\
 				srcs/builtins/ft_env_utils.c	\
 				srcs/executor/ft_exec.c		\
+				srcs/expansion/ft_expand_var.c	\
 				srcs/main.c \
 
 OBJS		:= $(SRCS:.c=.o)

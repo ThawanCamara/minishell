@@ -86,16 +86,21 @@ int	main(int argc, char *argv[], char **envp)
 {
 	(void) argc;
 	(void) argv;
+	(void) envp;
 
-	char *args1[] = {"/bin/ls", "-l", 0};
-	char *args2[] = {"/bin/grep", "libft", 0};
-	char *args3[] = {"/bin/wc", "-l", 0};
-
-	char **argvs[] = {args1, args2, args3, 0};
+	//char *args1[] = {"/bin/ls", "-l", 0};
+	//char *args2[] = {"/bin/grep", "libft", 0};
+	//char *args3[] = {"/bin/wc", "-l", 0};
+//
+	//char **argvs[] = {args1, args2, args3, 0};
 	// ft_striter(argvs[0], print);
 	// ft_striter(argvs[1], print);
 	// ft_striter(argvs[2], print);
-	execute(3, NULL, NULL, argvs, 0, envp);
+	//char *s = ft_str_detach("ola mundo", 2, 5);
+	char *s = ft_expand_var("ola ${USER} lindao", envp);
+	ft_printf("%s\n", s);
+	free(s);
+	//execute(3, NULL, NULL, argvs, 0, envp);
 	//execute(3, NULL, "file", argvs, 0, envp);
 	return (0);
 }

@@ -61,7 +61,7 @@ BASE_SRC	:=	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c		\
 EXTRA_SRC	:=	ft_clean.c ft_throw_error.c ft_striter.c ft_nfree_arr.c ft_isescape.c	\
 				ft_isquote.c ft_strcombine.c ft_free_arr.c ft_strarr_expand.c			\
 				ft_strarr_dup.c ft_strarr_size.c ft_strarr_remove.c ft_nfree.c 			\
-				ft_ctoa.c ft_strdiff.c
+				ft_ctoa.c ft_strdiff.c ft_strinsert.c ft_strdetach.c
 
 BASE_SRC	:=	$(addprefix $(BASE_DIR),$(BASE_SRC))
 EXTRA_SRC	:=	$(addprefix $(EXTRA_DIR),$(EXTRA_SRC))
