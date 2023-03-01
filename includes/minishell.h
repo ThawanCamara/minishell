@@ -66,6 +66,7 @@ typedef struct s_simple
 typedef struct s_shell
 {
 	int			cmd_amount;
+	char		**argv;
 	char		**envp;
 	t_simple	*cmd_table;
 	void		**fcheck;

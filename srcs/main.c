@@ -101,7 +101,7 @@ int	main(int argc, char *argv[], char **envp)
 	ft_printf("%s\n", s);
 	free(s);
 	//execute(3, NULL, NULL, argvs, 0, envp);
-	//execute(3, NULL, "file", argvs, 0, envp);
+// 	execute(3, NULL, "file", argvs, 0, envp);
 	return (0);
 }
 
@@ -116,7 +116,8 @@ void execute(int numsimplecommands, char *infile, char *outfile, char **scmd[], 
 	if (infile){
 		fdin = open(infile, O_RDONLY);
 	}
-	else{
+	else
+	{
 	//Usedefaultinput
 		fdin = dup(tmpin);
 	}	
