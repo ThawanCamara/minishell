@@ -72,6 +72,7 @@ typedef struct s_shell
 	void		**fcheck;
 	int			is_command;
 	int			exit;
+	int			ret;
 } t_shell;
 
 /* ************************************************************************** */
